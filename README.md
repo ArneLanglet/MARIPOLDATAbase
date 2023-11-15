@@ -5,8 +5,11 @@ The R files in different steps reads, cleans and stores the data
 The first file 0_bbnj.R is the master file. By running this file, the three main files that 1. reads the raw excel files filled out by the researchers; 
 2. cleans, organizes and generates the variables of the dataset and 3. stores the final data (1_read.R; 2._cleaning.R; 3_save.R)
 
+-------------------- 
 
 1_read.R accesses the raw data - i.e. the codebooks filled out by the researchers. These are on the MARIPOLDATA servers and cannot be publicly accessed. 
+
+-------------------
 
 2_cleaning.R cleans the data and organizes, categorizes the variables. In detail, this file will run the following variable creating files: 
 
