@@ -63,12 +63,15 @@ nun <- c("Turkey", "Venezuela", "Syrian Arab Republic", "UZBEKISTAN",
 
 
 ## un groups
-weog <- c("canada", "eu", "new zealand", "australia", "usa", "switzerland", "norway", "iceland")
+weog <- c("canada", "eu", "new zealand", "australia", "usa", "switzerland", "norway", "iceland",
+          "France", "UK", "Spain", "Monaco", "Israel", "Finland", "Belgium")
+
+
 
 asia_pcf <- c("Afghanistan", "Bahrain",
               "Bangladesh",
               "Bhutan",
-              "BruneiDarussalam",
+              "Brunei Darussalam",
               "Cambodia",
               "China",
               "Cyprus",
@@ -76,14 +79,14 @@ asia_pcf <- c("Afghanistan", "Bahrain",
               "Fiji",
               "India", 
               "Indonesia", 
-              "Iran(IslamicRepublicof)",
+              "Iran",
               "Iraq",
               "Japan", 
               "Jordan", 
               "Kazakhstan", 
               "Kuwait", 
               "Kyrgyzstan", 
-              "LaoPeople'sDemocraticRepublic",
+              "Lao People's Democratic Republic",
               "Lebanon",
               "Malaysia",
               "Maldives", 
@@ -99,9 +102,9 @@ asia_pcf <- c("Afghanistan", "Bahrain",
               "Papua New Guinea",
               "Philippines",
               "Qatar",
-              "SouthKorea",
+              "Repubic of Korea",
               "Samoa", 
-              "SaudiArabia", 
+              "Saudi Arabia", 
               "Singapore",
               "Solomon Islands",
               "Sri Lanka", 
@@ -114,14 +117,26 @@ asia_pcf <- c("Afghanistan", "Bahrain",
               "Turkey",
               "Turkmenistan",
               "Tuvalu",
-              "UnitedArabEmirates",
+              "United Arab Emirates",
               "Uzbekistan",
               "Vanuatu",
-              "VietNam",
-              "Yemen")
+              "Viet Nam",
+              "Yemen",
+              "Federated States of Micronesia")
 
 asia_pcf <- str_to_lower(asia_pcf)
 
+la <- c("Brazil", "Argentina", "Uruguay", "Chile", "Costa Rica", "El Salvador",
+          "Guatemala", "Honduras", "Mexico", "Panama", "Peru", "Dominican Republic", "Colombia",
+          "Ecuador", "Venezuela", "Saint Lucia", "Antigua and Barbuda", "Jamaica", "Paraguay",
+        "Bahamas", "Belize", "Trinidad and Tobago", "Cuba", "barbados", "Nicaragua")
+
+
+eastern <- c("Russia")
+
+weog <- str_to_lower(weog)
+eastern <- str_to_lower(eastern)
+afr <- str_to_lower(afr)
 
 
 library(readxl)
@@ -158,11 +173,14 @@ bbnj <- mutate(bbnj, alliance =ifelse (actor %in% afr, "African Group",
 
 
 
-
+bbnj$actor <- str_to_lower(bbnj$actor
+                                               )
 bbnj <- mutate(bbnj, un_group =ifelse (actor %in% weog, "Western European and Others",
-                                       ifelse (actor %in% clam, "Latin American",
+                                       ifelse (actor %in% la, "Latin American and Caribbean",
                                                ifelse (actor %in% asia_pcf, "Asia-Pacific",
                                                        ifelse (actor %in% afr, "African Group",
-                                                               NA)))))
+                                                               ifelse (actor %in% eastern, "Eastern European",
+                                                               NA))))))
+
 
 

@@ -6,7 +6,7 @@ rm (list = ls())
 
 
 library(writexl)
-library(tidyverse)Thanky 
+library(tidyverse)
 library(dplyr)
 library(stringi)
 
@@ -23,7 +23,7 @@ setwd("//share.univie.ac.at/maripoldata/5_Research/WP1/Collected Data/4_final da
 write.csv(bbnj_ac, file = "bbnj_ac.csv", row.names = F)
 write_xlsx(bbnj_ac, "bbnj_ac.xlsx")
 
-
+bbnj_full <- bbnj
 
 gc()
 options(java.parameters = "-Xmx1024m")
@@ -31,7 +31,6 @@ options(java.parameters = "-Xmx1024m")
 bbnj_full <- bbnj_full %>% arrange(IGC, date, time) %>% as.data.frame()
 bbnj_full <- data.frame(lapply(bbnj_full, as.character), stringsAsFactors = FALSE)
 bbnj_full[is.na(bbnj_full)] <- ""
-#bbnj_full <- subset(bbnj_full, id_combined != "AL_2869")
 
 
 bbnj_full_intersessionals <- bbnj_full %>% filter(IGC %in% c("intersessionals"))
@@ -110,3 +109,4 @@ rm(list= ls()[!(ls() %in% c('bbnj','bbnj_full', 'bbnj_ac', 'bbnj_conc',
                             'bbnj_full_intersessionals', 'path'))])
 
 save.image(file = "bbnj_final.RData")
+

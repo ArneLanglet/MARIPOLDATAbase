@@ -365,7 +365,7 @@ badwords.corpus <- c("teared", "TK", "peooooople", "clan", "science-based", "pal
 "epxlore", "negotiatie", " favor ", "ocenas", "plafotm", "joingini", " wihsh ", " goo ", " irst ", "intermsessionaal", "advanatge", " tahnk ", "techincal", "reaosning", " fornt ", "pprocesses", "proceses",
 "impotant", " beging ", " programm ", " paer ", " wnet ", "therehave", " menat ", "emchanism", "provisiosn", "coferent", "detial", " mroe ", "aprticularly", "coordinatee", "tot ake", " elave ", "breifly",
 " ans ", " delegationn ", " loor ", "ecologicla", "connecivitx", "problbale", "contexttt", "coordinateing", "ddelegation", "tranaprency", "simplifyy", "turnign", " wach ", "listbut", "estbalihs", "estbasilh",
-"technoclgy", "relevnt", "tot he", "impoerant", " gruop ", "carricom", "palce", "faciltiaitng" 
+"technoclgy", "relevnt", "tot he", "impoerant", " gruop ", "carricom", "palce", "faciltiaitng")
   
 
 
@@ -476,7 +476,10 @@ goodwords.corpus <- c("tiered", "traditional knowledge", "people", "CLAM", "scie
 )
 
 
+signs <- c(",", "+", ":", "\"", "!", "?", "&", ";", "(", ")")
 
+igc <- c("igc", "unclos", "bbnj", "eez", "abnj", "sg", "undoalos", "unga", "soi", "soa", "dsi", "gsd",
+         "cb", "tmt", "cbtmt", "mgrs", "eia", "abmt", "cc", "stb", "eias")
 
 
 goodwords.corpus <- str_to_lower(goodwords.corpus)

@@ -12,11 +12,18 @@ bbnj[["type_obs"]] <- new_vec5
 
 bbnj$type_obs[bbnj$type_obs=="!"] <- '1'
 
-bbnj <- mutate(bbnj, type_label = ifelse(type_obs == 1, "intervention",
-                                         ifelse(type_obs == 2, "interruption",
-                                                ifelse(type_obs == 3, "opening/closing statement",
-                                                       ifelse(type_obs == 4, "other statement or verbal act",
-                                                              ifelse(type_obs == 5, "other activity or non-verbal action",
-                                                                     ifelse(type_obs == 8, "informal talk",
-                                                                            ifelse(type_obs == 99, "NA",
-                                                                                   paste(type_label)))))))))
+
+bbnj <- bbnj %>%
+  mutate(type_label = case_when(
+    type_obs == 1  ~ "intervention",
+    type_obs == 2  ~ "interruption",
+    type_obs == 3  ~ "opening/closing statement",
+    type_obs == 4  ~ "other statement or verbal act",
+    type_obs == 5  ~ "other activity or non-verbal action",
+    type_obs == 8  ~ "informal talk",
+    type_obs == 99 ~ NA_character_,
+    TRUE           ~ as.character(type_label)  # Default case if none of the above
+  ))
+
+# Convert type_label to a factor
+bbnj$type_label <- factor(bbnj$type_label)

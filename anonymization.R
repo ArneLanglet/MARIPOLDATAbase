@@ -3,7 +3,11 @@ write.csv(bbnj_complete, file = "//share.univie.ac.at/maripoldata/5_Research/WP1
 write_xlsx(bbnj_complete, "//share.univie.ac.at/maripoldata/5_Research/WP1/Collected Data/3_working data/bbnj_complete.xlsx")
 
 
+bbnj <- temp
 
+bbnj$double[is.na(bbnj$double)] <- 0 
+  
+  
 ################################### anonymization
 
 source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/names.r")
@@ -14,7 +18,8 @@ names <- str_to_lower(names)
 bbnj$actor <- str_to_lower(bbnj$actor)
 
 bbnj$observation <- gsub(paste(names, collapse='|'), ' [removed for anonymity] ', bbnj$observation)
-bbnj$comment_obs <- gsub(paste(names, collapse='|'), ' [removed for anonymity] ', bbnj$comment_obs)
+bbnj$comment_obs_original <- gsub(paste(names, collapse='|'), ' [removed for anonymity] ', bbnj$comment_obs_original)
+bbnj$comment_obs_gpt4_corrected <- gsub(paste(names, collapse='|'), ' [removed for anonymity] ', bbnj$comment_obs_gpt4_corrected)
 
 # bbnj$comment_obs <- gsub(paste(names, collapse=' | '), ' [removed for anonymity] ', bbnj$comment_obs)
 # bbnj$comment_obs <- gsub(paste(names, collapse='| '), ' [removed for anonymity] ', bbnj$comment_obs)
@@ -78,6 +83,11 @@ for (i in Country) {
                                                      "informal informals")) &
                        bbnj$obo == print(i),  print(translate_st[translate_st$Country == i,]$a),
                      bbnj$obo)
+  
+  bbnj$alliance <- ifelse((bbnj$negotiation_format %in% c("dialogue/webinar/briefing", "informal dialogues", 
+                                                     "informal informals")) &
+                       bbnj$alliance == print(i),  print(translate_st[translate_st$Country == i,]$a),
+                     bbnj$alliance)
 }
 
 
@@ -123,6 +133,10 @@ for (i in IGO) {
                                                        "informal informals")) &
                          bbnj$actor == print(i),  print(translate_igo[translate_igo$V1 == i,]$a),
                        bbnj$actor)
+  bbnj$obo <- ifelse((bbnj$negotiation_format %in% c("dialogue/webinar/briefing", "informal dialogues", 
+                                                     "informal informals")) &
+                       bbnj$obo == print(i),  print(translate_igo[translate_igo$V1 == i,]$a),
+                     bbnj$obo)			
 }
 
 
@@ -141,4 +155,18 @@ for (i in unbodies) {
                                                        "informal informals")) &
                          bbnj$actor == print(i),  print(translate_un[translate_un$V1 == i,]$a),
                        bbnj$actor)
+  bbnj$obo <- ifelse((bbnj$negotiation_format %in% c("dialogue/webinar/briefing", "informal dialogues", 
+                                                       "informal informals")) &
+                         bbnj$obo == print(i),  print(translate_un[translate_un$V1 == i,]$a),
+                       bbnj$obo)
 }
+
+## replacing the word after "on behalf of"...
+
+bbnj <- bbnj %>%
+  mutate(observation = ifelse((bbnj$negotiation_format %in% c("dialogue/webinar/briefing", "informal dialogues", 
+                                                       "informal informals")),
+                       gsub("on behalf of \\w+", "on behalf of anonymous", observation),
+                       observation))
+
+

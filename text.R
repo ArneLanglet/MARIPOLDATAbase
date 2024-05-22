@@ -105,7 +105,8 @@ badwords.corpus <- c("teared", "TK", "peooooople", "clan", "science-based", "pal
                      " tht ", "rbing", "whetehr", " soem ", "acitviites", "euipemnt", " kee ", "operationaling", "btof", "researhc", "underatdn",
                      "scentiwits", "oblgihations", "coordinateion", "accesss ", "maby ",
 					 "capactiy", "ebenefits" , "sstem", "nonmonetar" , "discussinos", "bulateral", "shsll" , "researhc" , "geenral", "dissapointment" , "stagnatio" , "shwoing", "fxx", "flexibleibily",
-					 "onyl", "ocena" ,"governane" , "respinsbility", "finsih", "benefti", "somethingn"		 
+					 "onyl", "ocena" ,"governane" , "respinsbility", "finsih", "benefti", "somethingn", "ethopia", "mosambik", "dont", "dd",
+					 "operationlize", "operatiopnlization"
 
 					 )
 
@@ -217,7 +218,9 @@ goodwords.corpus <- c("tiered", "traditional knowledge", "people", "CLAM", "scie
                       " that ", "bring", "whether", " some ", "activities", "equipment", " keep ", "operationalizing", "both", "research", "understand",
                       "scientists", "obligations", "coordination", "access", "maybe ",
 					  					 "capacity" , "benefits", "system", "non monetary", "discussions", "bilateral", "shall", "research", "general", "disappointment", "stagnating", "showing", "fix", "flexibility", 
-					 "only", "ocean", "governance", "responsibility", "finish", "benefit", "something"
+					 "only", "ocean", "governance", "responsibility", "finish", "benefit", "something", "ethiopia", "mozambique", "don`t", "did",
+					 "operationalize", "operationalize"
+					 
 					 
                      )
                      
@@ -226,6 +229,8 @@ goodwords.corpus <- c("tiered", "traditional knowledge", "people", "CLAM", "scie
                      
                      
                      goodwords.corpus <- str_to_lower(goodwords.corpus)
+                     
+                     temp <- bbnj
                      
                      vect.corpus <- goodwords.corpus
                      names(vect.corpus) <- badwords.corpus
@@ -237,4 +242,8 @@ goodwords.corpus <- c("tiered", "traditional knowledge", "people", "CLAM", "scie
                      temp$issue_detail <- str_replace_all(temp$issue_detail, vect.corpus)
                      temp$issue_scientific <- str_replace_all(temp$issue_scientific, vect.corpus)
                      temp$pro_contra <- str_replace_all(temp$pro_contra, vect.corpus)
+                     temp$section_title <- str_replace_all(temp$section_title, vect.corpus)
+                     
+                     
+bad <- hunspell(bbnj$comment_obs)
                      

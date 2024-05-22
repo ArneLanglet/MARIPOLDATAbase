@@ -12,6 +12,7 @@ library(openxlsx)
 library(lubridate)
 library(stringr)
 library(writexl)
+library(hunspell)
 
 # Clean the environment
 rm(list = ls())
@@ -65,88 +66,80 @@ bbnj <- bbnj %>% filter(!grepl("chat entry", observation))
 #################### all text cleaning
 
 temp <- bbnj
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/text.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/text.r")
 bbnj <- temp
 
 #################### packages
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/packages.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/packages.r")
 
 #################### actors
 temp <- bbnj
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/actors.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/actors.r")
 
 
 #################### date & time
 
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/datetime.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/datetime.r")
 
 #################### speaking time (diff) variable and double 
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/double.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/double.r")
 
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/diff_time.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/diff_time.r")
 
 
 #################### type of observation + label
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/type_obs.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/type_obs.r")
 
 
 
 #################### actor_type
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/actor_type.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/actor_type.r")
 
 
 
 #################### alliance
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/alliances.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/alliances.r")
 
 
 #################### on behalf of...
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/obo.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/obo.r")
 
 
 #################### negotiation format
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/negformat.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/negformat.r")
 
 
 
 #################### article title
 temp <- bbnj
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/arttitle.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/arttitle.r")
 bbnj <- temp
 
 
 #################### section title
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/sectiontitle.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/sectiontitle.r")
 
 
 #################### pro/contra variable
 
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/procontra.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/procontra.r")
 
 
 #################### mood
 
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/mood.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/mood.r")
 
 
 #################### issue scientific?
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/scientific.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/scientific.r")
 
 
 #################### sentiment analysis variables 
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/sentiment.r")
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/sentiment.r")
 
 
 #################### webcast, enb reports draft links
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/links.r")
-
-
-
-#################### anonymization
-source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/bbnj_database/anonymization.r")
-
-
-
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/links.r")
 
 
 
@@ -168,7 +161,8 @@ bbnj <- bbnj %>% select(-c("department", "function_pers", "person_scientific", "
 
 # reorder columns by name
 colnames(bbnj)
-col_order <- c("type_obs",
+col_order <- c("running_id",
+  "type_obs",
                "type_label",
                "actor",
                "actor_type",
@@ -177,7 +171,8 @@ col_order <- c("type_obs",
                "obo",
                "un_group", 
                "observation"
-               ,"comment_obs"
+               ,"comment_obs_original"
+  ,"comment_obs_gpt4_corrected"
                , "package" 
                , "package_label"
                , "section_title"
@@ -214,11 +209,32 @@ bbnj <- bbnj[, col_order]
 
 
 
+## order chronologically, remove duplicates + add running id
+
+
+bbnj <- read.csv("//share.univie.ac.at/maripoldata/5_Research/WP1/Collected Data/3_working data/bbnj_full_total.csv")
+
+
+bbnj<- distinct(bbnj)
+
+bbnj <- bbnj %>%
+  arrange(unique_time)
+
+bbnj$running_id <- 1:nrow(bbnj)
+
+bbnj$comment_obs_gpt4_corrected <- str_to_lower(bbnj$comment_obs_gpt4_corrected)
+
+
+write.xlsx(bbnj,"//share.univie.ac.at/maripoldata/5_Research/WP1/Collected Data/3_working data/bbnj_complete.xlsx")
+
+
+#################### anonymization
+source("//share.univie.ac.at/maripoldata/5_Research/WP1/collected data/3_working data/MARIPOLDATAbase/anonymization.r")
 
 
 
 
-bbnj_full <- bbnj
+
 
 ### save total workspace0
 save.image(file = "//share.univie.ac.at/maripoldata/5_Research/WP1/Collected Data/3_working data/bbnj_clean.RData")

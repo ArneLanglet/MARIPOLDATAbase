@@ -27,16 +27,16 @@ gc()
 
 
 
-setwd("//share.univie.ac.at/maripoldata/5_Research/WP1/Collected Data/3_working data/bbnj_database")
+setwd("//share.univie.ac.at/maripoldata/5_Research/WP1/Collected Data/3_working data/MARIPOLDATAbase")
 
 
 source("1_read.R")
 
-setwd("//share.univie.ac.at/maripoldata/5_Research/WP1/Collected Data/3_working data/bbnj_database")
+setwd("//share.univie.ac.at/maripoldata/5_Research/WP1/Collected Data/3_working data/MARIPOLDATAbase")
 
 source("2_cleaning.R")
 
-setwd("//share.univie.ac.at/maripoldata/5_Research/WP1/Collected Data/3_working data/bbnj_database")
+setwd("//share.univie.ac.at/maripoldata/5_Research/WP1/Collected Data/3_working data/MARIPOLDATAbase")
 
 source("3_save.R")
 

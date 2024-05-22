@@ -165,6 +165,54 @@ tt <- hms::as_hms(lubridate::parse_date_time(tt, "HMS"))
 tt <- format(as.POSIXct(tt,format='%H:%M:%S'),format='%H:%M:%S')
 
 
+
+
+
+### special Silvia 20.06.2023 - 6 hours to new york time
+
+t <- bbnj_igc %>% 
+  filter(author == "SR" & date == "2023-06-20")  %>% 
+  select(time) 
+
+tt <- paste(hms(t$time) - hours(6))
+
+tt <- hms::as_hms(lubridate::parse_date_time(tt, "HMS"))
+
+tt <- format(as.POSIXct(tt,format='%H:%M:%S'),format='%H:%M:%S')
+
+
+for (i in 1:length(t$time)){
+  i1 <- t$time[i]
+  i2 <- tt[i]
+  
+  bbnj_igc$time[bbnj_igc$author=="SR" & bbnj_igc$date == "2023-06-20" & bbnj_igc$time == i1] <- i2
+  
+  
+}
+
+
+### special Simon 20.06.2023 - 6 hours to new york time
+
+t <- bbnj_igc %>% 
+  filter(author == "SF" & date == "2023-06-19")  %>% 
+  select(time) 
+
+tt <- paste(hms(t$time) - hours(6))
+
+tt <- hms::as_hms(lubridate::parse_date_time(tt, "HMS"))
+
+tt <- format(as.POSIXct(tt,format='%H:%M:%S'),format='%H:%M:%S')
+
+
+for (i in 1:length(t$time)){
+  i1 <- t$time[i]
+  i2 <- tt[i]
+  
+  bbnj_igc$time[bbnj_igc$author=="SF" & bbnj_igc$date == "2023-06-19" & bbnj_igc$time == i1] <- i2
+  
+  
+}
+
 #bbnj_igc <- mutate(bbnj_igc, time = ifelse(author == "PD" & IGC == 4, t, time))
 
 
