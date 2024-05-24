@@ -133,7 +133,7 @@ la <- c("Brazil", "Argentina", "Uruguay", "Chile", "Costa Rica", "El Salvador",
 
 
 eastern <- c("Russia")
-
+la <- str_to_lower(la)
 weog <- str_to_lower(weog)
 eastern <- str_to_lower(eastern)
 afr <- str_to_lower(afr)
@@ -173,8 +173,7 @@ bbnj <- mutate(bbnj, alliance =ifelse (actor %in% afr, "African Group",
 
 
 
-bbnj$actor <- str_to_lower(bbnj$actor
-                                               )
+bbnj$actor <- str_to_lower(bbnj$actor)
 bbnj <- mutate(bbnj, un_group =ifelse (actor %in% weog, "Western European and Others",
                                        ifelse (actor %in% la, "Latin American and Caribbean",
                                                ifelse (actor %in% asia_pcf, "Asia-Pacific",
